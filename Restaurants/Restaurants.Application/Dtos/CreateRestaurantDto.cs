@@ -18,6 +18,6 @@ namespace Restaurants.Application.Dtos
         //public string? ContactEmail { get; set; }
         //public string? ContactPhone { get; set; }
         public AddressDto? Address { get; set; }
-        public List<DishDto> Dishes { get; set; } = new();
+        //public List<DishDto> Dishes { get; set; } = new();
     }
 }

@@ -14,6 +14,24 @@ namespace Restaurants.Infrastructure.Repositories
             return restaurant.Id;
         }
 
+        public async Task<Restaurant> Create2(Restaurant restaurant)
+        {
+            dbContext.Restaurants.Add(restaurant);
+            await dbContext.SaveChangesAsync();
+
+            var newRestaurant = await dbContext.Restaurants
+                .Include(r => r.Dishes)
+                .FirstOrDefaultAsync(x => x.Id == restaurant.Id);
+
+            return newRestaurant;
+        }
+
+        public async Task Delete(Restaurant restaurant)
+        {
+            dbContext.Restaurants.Remove(restaurant);
+            await dbContext.SaveChangesAsync();
+        }
+
         //public readonly RestaurantDbContext _dbContext;
         //public RestaurantsRepository(RestaurantDbContext dbContext)
         //{

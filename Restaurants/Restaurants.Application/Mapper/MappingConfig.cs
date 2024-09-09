@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Restaurants.Application.Dtos;
+using Restaurants.Application.Restaurants.Commands.CreateRestaurant;
 using Restaurants.Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -16,24 +17,29 @@ namespace Restaurants.Application.Mapper
             var mappingConfig = new MapperConfiguration(config =>
             {
                 // Map from Dish to DishDto
-                config.CreateMap<Dish, DishDto>();
+                config.CreateMap<Dish, DishDto>();  //.ReverseMap();
 
-                config.CreateMap<CreateRestaurantDto, Restaurant>()
+                // Map from Address to AddressDto
+                config.CreateMap<Address, AddressDto>().ReverseMap();
+
+                //config.CreateMap<CreateRestaurantDto, Restaurant>()
                 //.ForMember(dest => dest.Address, opt => opt.MapFrom(src => src.Address));
-                .ForMember(dest => dest.Address, opt => opt.MapFrom(src => new Address
-                {
-                    City = src.Address.City,
-                    Street = src.Address.Street,
-                    ZipCode = src.Address.ZipCode
-                }));
+
+                config.CreateMap<CreateRestaurantCommand, Restaurant>()
+                .ForMember(dest => dest.Address, opt => opt.MapFrom(src => src.Address));
+                //.ForMember(dest => dest.Address, opt => opt.MapFrom(src => new Address
+                // {
+                //     City = src.Address.City,
+                //     Street = src.Address.Street,
+                //     ZipCode = src.Address.ZipCode
+                // }));
 
                 // Map from Restaurant to RestaurantDto
                 config.CreateMap<Restaurant, RestaurantDto>()
                     .ForMember(dest => dest.Address, opt => opt.MapFrom(src => src.Address))
                     .ForMember(dest => dest.Dishes, opt => opt.MapFrom(src => src.Dishes));
 
-                // Map from Address to AddressDto
-                config.CreateMap<Address, AddressDto>();
+               
             });
             return mappingConfig;
         }

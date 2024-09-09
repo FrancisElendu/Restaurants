@@ -8,11 +8,17 @@
 
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="13.0.1" />
+    <PackageReference Include="MediatR" Version="12.4.0" />
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="8.0.1" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\BuildingBlock\BuildingBlock.csproj" />
     <ProjectReference Include="..\Restaurants.Domain\Restaurants.Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Dishes\" />
   </ItemGroup>
 
 </Project>
