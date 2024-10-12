@@ -15,6 +15,11 @@ builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddApplication();
 
 
+//Used to configure logging provider
+//builder.ConfigureLogging(loggingBuilder =>
+//{
+//    loggingBuilder.AddProvider()
+//});
 var app = builder.Build();
 
 

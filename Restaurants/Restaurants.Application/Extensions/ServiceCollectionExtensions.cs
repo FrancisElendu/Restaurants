@@ -12,7 +12,7 @@ namespace Restaurants.Application.Extensions
         public static void AddApplication(this IServiceCollection services)
         {
             var applicationAssembly = typeof(ServiceCollectionExtensions).Assembly;
-            services.AddScoped<IRestaurantsService, RestaurantsService>();
+            //services.AddScoped<IRestaurantsService, RestaurantsService>();
             IMapper mapper = MappingConfig.RegisterMaps().CreateMapper();
             services.AddSingleton(mapper);
             services.AddTransient<ResponseDto>();
